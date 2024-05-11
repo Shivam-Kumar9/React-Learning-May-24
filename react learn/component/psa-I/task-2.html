@@ -18,7 +18,7 @@
 let line1 = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...";
 let line2 = "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...";
   
-let theme = "dark"
+ 
 
 
 {/*
@@ -32,8 +32,10 @@ function Text(){
     } </>)
 }
 */}
-// above is working but it is showing 
+// above is working but it is showing  if  and else condition also 
 
+
+/*
 function Text(){
     return 
         if(theme==="dark")( <> <h1 style={{backgroundColor: "black" , color : "white" , fontSize : "48px"}}>{line1}</h1> </> )
@@ -41,6 +43,47 @@ function Text(){
         
     else if(theme=="light")(<>  <h1 style={{backgroundColor: "white" , color : "black" , fontSize : "48px"}}>{line2}</h1>  </>)
 
+} 
+*/
+// it runs but do not show error :-In your Text component, the issue lies with the return statement and the if-else logic. In JavaScript, you can't directly return an if-else block like you're trying to do
+
+ /*
+ function Text(){
+    
+    return (<>
+    <p {(theme=="dark")?style={{backgroundColor: "black" , color : "white" , fontSize : "48px"}}
+                       :style={{backgroundColor: "white" , color : "black" , fontSize : "48px"}} } > 
+       {theme=="light"?line2:line1}</p>
+   </> )
+} 
+ */
+//  issue is with the way you're attempting to conditionally apply styles using the ternary operator. You can't directly use the ternary operator within JSX like this to conditionally apply styles.
+
+//Instead, you should use an object to define the styles conditionally based on the theme variable, and then pass that object to the style attribute of the paragraph element.
+
+/*
+var  theme = "dark";
+function Text(){             
+    return (<>
+    <p style={theme === "dark"?
+                      {backgroundColor: "black" , color : "white" , fontSize : "48px"}
+                      :{backgroundColor: "white" , color : "black" , fontSize : "48px"}}> 
+       {theme === "light"?line2:line1 }</p>
+   </> )
+} 
+*/
+//this works also but
+
+let  theme = "light";
+function Text(){
+    const textstyle = theme === "dark"?
+                      {backgroundColor: "black" , color : "white" , fontSize : "48px"}
+                      :{backgroundColor: "white" , color : "black" , fontSize : "48px"}
+    const text = theme === "light"?line2:line1               
+    return (<>
+    <p style={textstyle}> 
+       {text}</p>
+   </> )
 } 
 
 function App(){
