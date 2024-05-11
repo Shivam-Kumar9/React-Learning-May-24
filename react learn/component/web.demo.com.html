@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2Practice</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    let box = document.getElementById("root");
+
+    function Navbar() {
+      return (
+        <div
+          style={{
+            backgroundColor: "lightGreen",
+            padding: "15px",
+            textAlign: "center",
+          }}
+        >
+          Navbar
+        </div>
+      )
+    }
+
+    function Message(prop) {
+      return (
+        <>
+          <p>{prop.text}</p>
+          <h4>{prop.name}</h4>
+        </>
+      )
+    }
+
+    function Footer(){
+        return( <div
+          style={{
+            backgroundColor: "Gray",
+            padding: "15px",
+            textAlign: "center",
+            color : "white"
+          }}
+        >
+          Footer
+        </div>)
+    }
+
+    function App() {
+      return(
+        <>
+        <Navbar />
+        <Message text = "good morning" name = " sachin" />
+        <Message text = "good evening" name = " Ram"/>
+        <Footer/>
+        </>
+      )
+      {/*
+    In your App component, the JSX is not rendering as expected because you have a syntax error. The return statement is followed by a newline, which causes JavaScript's automatic semicolon insertion (ASI) to insert a semicolon after return, effectively ending the statement. As a result, the JSX block after return is not considered part of the App function's return value.
+    */}
+    }
+
+    ReactDOM.createRoot(box).render(<App />);
+  </script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        #tit{
+            color: rgb(3, 125, 84);
+        }
+
+        #two{
+            border: 3px solid;
+        }
+        .twos{
+            color: rgb(6, 78, 172);
+            font-size: x-large;
+        }
+
+     </style>
+</head>
+<body>
+    <h1 style="color: rgb(124, 71, 2);">yes</h1>
+    <div id="root"></div>
+
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+ 
+ let box = document.getElementById("root")
+
+ //let  variable = React.createElement(tagname, prop/attributes, children)
+
+
+ //let title1 = React.createElement("h1" ,"Hello React")
+ //cann't write 2  , 3 work only 
+ let title1 = React.createElement("h1",null,"Hello React1") // one way
+ 
+
+ //let title2 = React.createElement("h1", id = "tit", "Hello React") 
+ // this is some how visible on DOM but id is not working so write in OBJ FORMAT {key : value }
+ let title2 = React.createElement("h1",{id : "tit"},"Hello React2") 
+ 
+ let title3 = React.createElement("h3",
+  {
+    id : "two",
+    class : "twos",  // className should use
+    children : "i am children of tag"
+  })//2nd way 
+ 
+  let title4 = React.createElement("h3",
+  {
+    children : "i am children of tag writen in obj only  "
+  })//2nd way
+
+//ReactDOM.createRoot(box).render(title2,title1)  
+// not work like dom  append only  one render as a container
+
+ReactDOM.createRoot(box).render(title3) 
+</script>
+</html>

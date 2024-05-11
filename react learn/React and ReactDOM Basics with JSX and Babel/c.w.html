@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script>
+ 
+ let box = document.getElementById("root");
+
+//  let head = React.createElement("h1",{
+//     id : header,
+//     children:"hellow "
+//  })
+// let head = React.createElement("h1", {
+//     id: "header",
+//     children: "Hello"
+// });
+let head = (<div>
+          <h1>List of fruits</h1>
+          <ol>
+            <li>Apple</li>
+            <li>Mango</li>
+            <li>Banana</li>
+            <li>KIwi</li>
+            <li>Orange</li>
+          </ol>
+          <img src="https://www.shutterstock.com/image-photo/bank-blocks-linked-money-by-lines-1937886058" alt="image"/>
+        </div> ) 
+
+ ReactDOM.createRoot(box).render(head)
+</script>
+</html>

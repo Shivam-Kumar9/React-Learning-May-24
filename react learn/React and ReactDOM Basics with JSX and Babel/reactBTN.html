@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        #spe{
+         color: blueviolet;
+         font-weight: 600;
+         border-bottom-right-radius: 10px;
+         border-top-left-radius: 10px;
+         padding: 15px;
+        }
+        .com{
+         background-color: yellow;
+        }
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  
+ let tap = ()=> { console.log(Math.random());};
+
+ function funal(){
+    alert("you clicked")
+ }
+
+//  let prop1 ={   // in property you need to specify that you are giving style as in html 
+//     color : "red",
+//     fontSize : "70px",
+//     padding : "15px",
+//     onClick : tap
+//  }
+
+ let prop ={
+     style :{color : "red",
+    fontSize : "70px",
+    padding : "15px"},
+    onClick : tap
+ }
+
+ let box = document.getElementById("root")
+
+ let btn1 = <button id="spe" className="com" onClick={tap}>Click me!</button>
+
+ //let btn2 = <button {...prop}>Click me!</button>
+
+ReactDOM.createRoot(box).render(btn1)
+</script>
+</html>

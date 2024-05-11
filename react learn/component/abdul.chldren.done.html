@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex & children use ABdu</title>
+</head>
+<body>
+
+     <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+ let box = document.getElementById("root")
+   
+function Left(){
+    return (<div  style={{backgroundColor:"Teal"}}>left side bar</div>)
+}
+
+function Feed(){
+    return <div>Feed</div>
+}
+
+function Right(){
+    return <div style={{backgroundColor:"lightBlue"}}>Right side bar</div>
+}
+
+function Layout(prop){
+    return (<div style={{display:"grid",gridTemplateColumns:"25% 50% 25%" , border:"1px solid",height:"80px"}}>
+        {prop.children}
+        </div>)
+}
+
+function Navbar() {
+      return (
+        <div
+          style={{
+            backgroundColor: "lightGreen",
+            padding: "15px",
+            textAlign: "center",
+          }}
+        >
+          Navbar
+        </div>
+      )
+    }
+ 
+    function Footer(){
+        return( <div
+          style={{
+            backgroundColor: "Gray",
+            padding: "15px",
+            textAlign: "center",
+            color : "white"
+          }}
+        >
+          Footer
+        </div>)
+    }
+
+function App(){
+    return(<> 
+     <Navbar/>
+     <Layout>
+        <Left/>
+        <Feed/>
+       <Right/>    
+    </Layout>
+    <Footer/>
+    </>)
+}
+
+function LayoutFlex(){
+    return(<div style={{display:"flex" , flexDirection:"row"}}>
+        <div style={{flex : 3, backgroundColor : "lightGreen"}}>1</div>
+        <div style={{flex : 6, backgroundColor : "yellow"}}>2</div>
+        <div style={{flex : 2, backgroundColor : "lightBlue"}}>3</div>
+        </div>)
+}
+function LayoutGrid(){
+    return(<div style={{display:"grid" , gridTemplateColumns:"25% 50% 25%"}}>
+        <div style={{ backgroundColor : "lightGreen"}}>1</div>
+        <div style={{ backgroundColor : "yellow"}}>2</div>
+        <div style={{ backgroundColor : "lightBlue"}}>3</div>
+        </div>)
+}
+
+ReactDOM.createRoot(box).render(<App/>)
+ 
+</script>
+</html>

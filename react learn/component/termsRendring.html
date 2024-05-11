@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex & children use ABdu</title>
+</head>
+<body>
+
+     <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+ let box = document.getElementById("root")
+   
+ 
+ 
+    function Footer1(){
+        return( <div
+          style={{
+            backgroundColor: "Gray",
+            padding: "15px",
+            textAlign: "center",
+            color : "white"
+          }} >
+          Footer
+        </div>)
+    }
+    
+    function giveNum(){
+        return( Math.floor( Math.random()*10)+1); 
+    }
+    
+    function Footer(){
+        const num = giveNum();
+
+        // if(num >=5){
+        //   return <div>Number is ({num}). It is greater than or equal of 5</div>
+        // }
+        // else{
+        //   return <div>Number is ({num}). It is less than  5</div>
+        // }
+        const styles = { color : num>=5? "green" : "red"};
+
+        return num>=5?<div style={styles}>Number is ({num}). It is greater than or equal of 5</div>
+        :<div style={styles}>Number is ({num}). It is less than  5</div>
+
+    }
+
+ 
+function App(){
+    return(<> 
+    <Footer/>
+    </>)
+}
+
+
+ReactDOM.createRoot(box).render(<App/>)
+ 
+</script>
+</html>

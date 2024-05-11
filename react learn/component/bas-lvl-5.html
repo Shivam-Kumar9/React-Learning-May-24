@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+ let box = document.getElementById("root")
+  
+// funtion which returns jsx is called === COMPONENT 
+// to distungish component from common function ( pascal casing =(AbcDef)) 
+ function Message(prop){
+   return  <h2>{prop.text}</h2>;
+}
+ 
+  
+ let comp = (
+    <div>
+     {Message("good lvl4")}
+     {/* we can write like line no.29 */}
+     {Message({ text : "good lvl5"})}
+    </div> 
+ );
+
+
+ReactDOM.createRoot(box).render(comp)
+</script>
+</html>

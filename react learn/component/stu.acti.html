@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+</head>
+<body>
+
+     <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+ let box = document.getElementById("root")
+  
+ function Card(prop){
+    return (<div style={{border: "1px solid blue"}}>
+        <h1>{prop.title}</h1>
+        <p>{prop.info}</p>
+        </div>);
+ }
+
+ function App(){
+    return (
+     
+    <Card title = "a" info = "it is a alphabate ,A for apple."/>,
+    <Card title = "b" info = "it is a alphabate ,B for ball."/>
+   )
+{/*without  faragement & comma after card tag  it runs but only last Element */}
+     
+ }
+
+  
+
+
+ReactDOM.createRoot(box).render(<App/>)
+{/*
+    function Content(props){
+        return  ( <h1>{props.title}</h1>,
+                  <p>{props.info}</p>)
+       }
+        
+       function Card(prop){
+          return (<div style={{border: "1px solid blue"}}>
+             {prop.children}
+              </div>)
+       }
+      
+       function app(){
+          return <Card>
+              <Content title = "a" info = "it is a alphabate ,A for apple."/>,
+          <Content title = "b" info = "it is a alphabate ,B for ball."/>
+              <Card/>
+      
+       }
+    //yes
+ 
+*/}
+{/* in this it run in infinit loop*/}
+</script>
+</html>
