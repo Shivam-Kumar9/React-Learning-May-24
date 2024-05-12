@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+    
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+ let box = document.getElementById("root")
+ 
+ function Counter(){
+    const [count , setCount]=React.useState(0)
+ //count = current
+ //setCount = dipatcher / updateFun
+    return(<div>
+        <h1>Count : {count}</h1>
+        <button disabled={count>=10} onClick={()=>setCount(count+1)}>Add</button>
+        <button disabled={count<=0} onClick={()=>setCount(count-1)}>Reduce</button>
+        <button disabled={count==0} onClick={()=>setCount(0)}>Reset</button>
+        </div>)
+}
+
+//i do not have control in line Noooooo ,22,    23,    28|29|30 {()=>setCount(count-1)}
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<Counter />);
+    
+ 
+</script>
+</html>
