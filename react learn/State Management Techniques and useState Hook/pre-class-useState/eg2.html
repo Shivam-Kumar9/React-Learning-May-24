@@ -19,43 +19,34 @@
  
  let box = document.getElementById("root")
 
- function App() {
-  let count = 0;
+ const state = { count: 0 };
+
+function setState(newState) {
+  Object.assign(state, newState);
+  renderApp();
+}
+
+function App() {
   function handleClick() {
-    console.log(count)
-    count += 1;
-    
-    console.log(`Clicked ${count} times`);
+    setState({ count: state.count + 1 });
   }
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>You clicked {state.count} times</p>
       <button onClick={handleClick}>Click me</button>
     </div>
   );
 }
 
+function renderApp() {
+  reactRoot.render(<App />);
+}
+
+
 // Render the App component into the root div
 const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
 reactRoot.render(<App />);
-
     
-ReactDOM.createRoot(box).render(<App/>) 
-
-
-/*
-Approach 1 and the problem with this :
-
-When the App component first renders, count is set to 0. The UI shows "You clicked 0 times".
-When you click the button, handleClick is called. It increments count and logs the new value. However, the UI still shows "You clicked 0 times".
-Expectation vs. Reality :
-
-As a developer, you might expect that changing count would update the UI. However, these changes are not being reflected.
-
-Why Doesn't the UI Update ?
-
-A simple answer - REACT doesn’t know. React has no way of knowing that count has changed and that it needs to update the UI.
-*/
 </script>
 </html>

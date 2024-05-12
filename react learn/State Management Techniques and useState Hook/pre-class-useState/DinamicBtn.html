@@ -10,30 +10,29 @@
 </head>
 <body>
      <div id="root"></div>
-     
+    
 </body>
 <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
  
- let box = document.getElementById("root")
+function Button({text,handleBtn}){
+  return <button onClick={handleBtn}>{text}</button>
+}
+
+const alr =()=> alert("message!")
+
+var count =0;
+const cons =()=> console.log(`${count++}`);
 
  function App() {
-  function handleClick() {
-    alert("Button clicked!");
-  }
-
-  function handleInputChange(event) {
-    console.log("Input value is being changed", event.target.value);
-  }
-
-  return (
-    <>
-      <button onClick={handleClick}>Click me</button>
-      <input type="text" placeholder="Type here" onChange={handleInputChange} />
-    </>
-  );
+    return(
+        <div>
+        <Button text="alert" handleBtn={alr}/>  
+        <Button text="consol" handleBtn={cons}/>
+        </div>
+    )
 }
 
 

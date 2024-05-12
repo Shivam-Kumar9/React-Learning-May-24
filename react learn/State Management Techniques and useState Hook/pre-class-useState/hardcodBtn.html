@@ -10,7 +10,7 @@
 </head>
 <body>
      <div id="root"></div>
-     
+    
 </body>
 <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
@@ -18,22 +18,23 @@
 <script type="text/babel">
  
  let box = document.getElementById("root")
+ 
+function Button(){
+  const sayHii= () =>{
+    alert("hii")
+  }
+
+    return <button onClick={sayHii}>click</button>
+}
 
  function App() {
-  function handleClick() {
-    alert("Button clicked!");
-  }
+    return(
+        <div>
 
-  function handleInputChange(event) {
-    console.log("Input value is being changed", event.target.value);
-  }
+        <Button/>  
 
-  return (
-    <>
-      <button onClick={handleClick}>Click me</button>
-      <input type="text" placeholder="Type here" onChange={handleInputChange} />
-    </>
-  );
+        </div>
+    )
 }
 
 
