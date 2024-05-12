@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+ let box = document.getElementById("root")
+
+ function App() {
+  function handleClick() {
+    alert("Button clicked!");
+  }
+
+  function handleInputChange(event) {
+    console.log("Input value is being changed", event.target.value);
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>Click me</button>
+      <input type="text" placeholder="Type here" onChange={handleInputChange} />
+    </>
+  );
+}
+
+    
+ReactDOM.createRoot(box).render(<App/>) 
+</script>
+</html>
