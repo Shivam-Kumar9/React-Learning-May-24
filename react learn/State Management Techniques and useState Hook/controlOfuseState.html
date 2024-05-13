@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    //even if we don not pass any state in input just tag and write in it it doesn't refresh because it have its Own  a state
+    /*
+   function App(){
+    return(<div>
+        <input 
+        type="text" 
+        placeholder="Enter your name"
+        />
+        </div>)
+ }
+ */
+
+    // in 2nd eg. there are 2kings (react,venila) some part have react control some part have js like
+    // although it manage state from input BUT  when using btn for reseting it not working because react has no control
+    // js|react are not in sync
+    /*
+     function App() {
+      const [name, setName] = React.useState("");
+
+      function handle(event) {
+        setName(event.target.value);
+      }
+      console.log(name);
+      return (
+        <div>
+          <input placeholder="type name" onChange={handle} />
+          <button
+            onClick={function () {
+              setName("");
+            }}
+          >
+            RESET
+          </button>
+        </div>
+      );
+    }
+    */
+    
+
+    // for making it controll component just need to add value then react have all control
+    // this called control component where react take control of all elements
+    function App() {
+      const [name, setName] = React.useState("");
+
+      function handle(event) {
+        setName(event.target.value);
+      }
+      console.log(name);
+      return (
+        <div>
+
+          <input 
+          placeholder="type name" 
+          onChange={handle} 
+          value={name}/>
+
+          <button
+            onClick={function () {
+              setName("");
+            }}>
+            RESET
+          </button>
+        </div>
+      );
+    }
+    /*
+ 
+ */
+
+    // Render the App component into the root div
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+    reactRoot.render(<App />);
+  </script>
+</html>

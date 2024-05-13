@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <style>
+        
+     </style>
 </head>
 <body>
      <div id="root"></div>
+     
 </body>
 <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-
- let box = document.getElementById("root")
-  
-let line1 = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...";
-let line2 = "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...";
-  
-
-var  theme = "dark";
-function Text(){             
-    return (<>
-    <p style={theme === "dark"?
-                      {backgroundColor: "black" , color : "white" , fontSize : "48px"}
-                      :{backgroundColor: "white" , color : "black" , fontSize : "48px"}}> 
-       {theme === "light"?line2:line1 }</p>
-   </> )
-} 
-
-
-function App(){
+  //even if we don not pass any state in input just tag and write in it it doesn't refresh because it have its Own  a state 
+ function App(){
+    
     return(<div>
-          <Text/>
+        <input 
+        type="text" 
+        placeholder="Enter your name"
+        />
         </div>)
-}
+ }
+  /*
+   
+ */
 
-ReactDOM.createRoot(box).render(<App/>)
+  // in this 
+  
+ //controll component
+ 
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
 </script>
 </html>
