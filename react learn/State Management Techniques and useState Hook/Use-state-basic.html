@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+/*
+ let someValue = React.useState(2)
+    console.log(someValue);
+*/
+// The issue lies in how you're using the useState hook. In React, hooks like useState should be used within functional components, not directly in the global scope. 
+
+
+ /*
+ function state(){
+    let someValue = React.useState(2)
+    console.log(someValue);
+    console.log(someValue[0]);
+    console.log(someValue[1]);
+}
+function App(){
+    return(<div>
+         <h1>some</h1>
+         {state()}
+        </div>)
+}
+ */
+//someValue(useState) has 2 values (currValue,Function)
+//React.useState(intialValue)
+
+function App(){
+    
+    let someValue = React.useState(0)
+    console.log(someValue);
+   // console.log(someValue[0]);
+   // console.log(someValue[1]);
+
+   function handle(){
+     someValue[1](someValue[0]+8)
+     
+   }
+ 
+
+    return(<div>
+         <h1>count : {someValue[0]}</h1>
+         <button onClick={handle}>+8</button>
+        </div>)
+}
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>
