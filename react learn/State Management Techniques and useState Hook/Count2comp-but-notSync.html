@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+// there are two component but not are in sync Explain- both are not linked both have different memory of count  
+
+function Counter(){
+    const [count, setCount]=React.useState(0);
+    return(<>
+     <h1>Count :{count}</h1>
+       
+     <button onClick={()=> setCount(count + 1)}>increase by 1</button>
+    </>)
+}
+
+function App(){
+    return(<div>
+        <Counter/>
+        <Counter/>
+        </div>)
+}
+/*
+ onClick={setCount(count + 1)}
+In your current code, you're directly invoking the setCount function inside the onClick event handler, which will immediately update the count state to count + 1 when the button is clicked. This can lead to unexpected behavior because React expects the onClick handler to be a function, not the result of a function call.
+
+To fix this, you need to wrap the setCount call inside an arrow function or a regular function, like this:
+onClick={() => setCount(count + 1)}
+*/
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+
+
+</script>
+</html>
