@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+ function App(){
+  const [current , setCheck]= React.useState(true)
+
+  function handle(){
+    setCheck(!current)
+  }
+    return(<div>
+        <label >Still single : 
+            <input 
+        type="checkbox" 
+        checked={current}
+        onChange={handle}
+        />
+            </label>
+        </div>)
+ }
+/*
+checked="current":
+
+In HTML, when you use checked="current", it sets the checked attribute of the input element to the string value "current". 
+This means the checkbox will always be checked because any non-empty string is considered truthy in JavaScript.
+
+*/
+ 
+/* using checked={current} in React allows for dynamic updating of the checkbox's checked state based on the value of
+ the state variable current, while checked="current" simply sets the attribute to the string "current" without any dynamic behavior.*/
+
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>
