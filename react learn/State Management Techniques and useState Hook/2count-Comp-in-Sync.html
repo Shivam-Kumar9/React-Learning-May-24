@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+// there are two component but not are in sync Explain- both are not linked both have different memory of count  
+  function Counter(prop){
+    return(<div>
+        <h1>Count : {prop.count}</h1>
+        <button onClick={prop.adding}>Add one</button>
+        </div>)
+  }
+
+ function App(){
+   const [count, setCount] = React.useState(0)
+   function increaseOne(){
+    setCount(count + 1)
+   }
+
+    return(<div>
+         <Counter count ={count} adding={increaseOne}/>
+         <Counter count ={count} adding={increaseOne}/>
+        </div>)
+ }
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+
+
+</script>
+</html>
