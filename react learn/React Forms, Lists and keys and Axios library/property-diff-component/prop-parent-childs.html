@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ function Child1(prop){
+    return(<div>
+        <h2>child A</h2>
+        <h3>{prop.gift}</h3>
+        </div>)
+ }
+ function Child2(prop){
+    return(<div>
+        <h2>child B</h2>
+        <h3>{prop.gift}</h3>
+        </div>)
+ }
+
+function Parent(){
+      let parent="Propperty from parent can be share to all shibling childs"
+   return(<>
+   <h1>parent</h1>
+   <Child1 gift={parent}/>
+   <Child2 gift={parent}/>
+   </>)
+}
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<Parent/>);
+    
+ 
+</script>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>son-dad</title>
      <style>
         
      </style>
@@ -16,18 +16,26 @@
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
+
+
  function Son(prop){
+    let name = "raju"
+    console.log(prop);
+    prop.sonPropFun(name)
     return(<div>
         <h2>child</h2>
-        <h3>{prop.father}</h3>
+        <h3>{}</h3>
         </div>)
  }
-
+//son se value catch karne ke lia dad me cllback fun banaya & ose  component child me obj(property) bana kar bhej di & use prop ko child me call kar lia     
 function Dad(){
-    let name = "raju"
+    function sonProp(name){
+        console.log(`parent component have acces to the child component ${name}`)
+    }
    return(<>
    <h1>parent</h1>
-   <Son father={name}/>
+   <Son sonPropFun={sonProp}/>
+   {/*child  objKEY={functionName}*/}
    </>)
 }
 

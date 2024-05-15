@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- prop pass -->
+</body>
+<script>
+
+function foo(){
+      function cbfun(val){
+        console.log(`here i have acess of bar value ${val}`);
+      }
+   bar(cbfun)   
+}
+
+function bar(cb){
+    let somevalue = Math.random() 
+    console.log(somevalue)
+
+    cb(somevalue)
+}
+//foo have bar property
+
+
+foo()
+</script>
+</html>
