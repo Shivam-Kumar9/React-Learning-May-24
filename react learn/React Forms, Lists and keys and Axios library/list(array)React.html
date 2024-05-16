@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+function FruitsList(){
+    return(<ul>
+        <li>Apple</li>
+        <li>Mango</li>
+        <li>Banana</li>
+        <li>Orange</li>
+        </ul>)
+}
+function VegetablesList(){
+    let vegetables = ["Potato","Tomato","Cabbage","Onion"]
+    return(<ul>
+        <li>{vegetables[0]}</li>
+        <li>{vegetables[1]}</li>
+        <li>{vegetables[2]}</li>
+        <li>{vegetables[3]}</li>
+        </ul>)
+}
+//the best way to represent dinamicaly for large servers always millions of data
+function HobbyList(){
+    let Hobbies = ["Gaming","Dancing","Runing","Singing","Reading"]
+    return(<ul>
+        {Hobbies.map((hobby)=>(
+            <li>{hobby}</li>
+        ))}
+        </ul>)
+}
+
+function App(){
+   return(<div>
+  <FruitsList/>
+  <VegetablesList/>
+  <HobbyList/>
+   </div>)
+}
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>

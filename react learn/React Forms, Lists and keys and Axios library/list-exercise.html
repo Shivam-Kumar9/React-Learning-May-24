@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+
+function User(prop){
+  //console.log(prop);
+  const {user}=prop
+  console.log(user);
+  const {name, age , gender, email, image}=user
+ return(
+     
+        <div>
+          <img src={user.image} alt="photo"/>
+          <h2><b>Name</b>   : {name}</h2>
+          <p><b>Age</b>    : {age}</p>
+          <p><b>Gender</b> : {gender}</p>
+          <p><b>Email</b>  : {email}</p>
+        </div>
+      )
+}
+ 
+
+function App(){
+  const users = [
+  {
+    id: 1,
+    name: "John",
+    age: 23,
+    gender: "male",
+    email: "atuny0@sohu.com",
+    image: "https://placehold.co/400"
+  },
+  {
+    id: 2,
+    name: "Terry",
+    age: 50,
+    gender: "male",
+    email: "terry@sohu.com",
+    image: "https://placehold.co/400"
+  },
+  {
+    id: 3,
+    name: "Jane",
+    age: 25,
+    gender: "female",
+    email: "jane@sohu.com",
+     image: "https://placehold.co/400"
+  },
+];
+   return(
+    <div>
+      {users.map((user) => (
+      <User user={user}/>
+     
+      ))}
+       {/*User ( {user :user })  
+         idhar map ne use individual obj ko catch to kia leking child me transfer karte wakt use ek or object me dal dia */}
+   </div>)
+}
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>
