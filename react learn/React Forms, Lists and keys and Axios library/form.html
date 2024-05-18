@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dad-son</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App(){
+        const [name,setname]=React.useState('')
+        const [age,setage]=React.useState(null)
+        const [country,setcountry]=React.useState('')
+        const [Ismarried,setmarried]=React.useState(false)
+       
+        function handlename(e){
+         setname(e.target.value)
+        }
+        function handleage(e){ 
+         setage(Number(e.target.value))
+        }
+        function opt(e){
+            setcountry(e.target.value)
+         }
+        function marid(e){
+            setmarried(e.target.checked)
+        }
+       
+        function handlesubmit(e){
+            e.preventDefault()
+            let Data ={
+                name,
+                age,
+                country,
+                Ismarried,
+            }
+            console.log(Data);
+        }
+
+       // console.log(name);
+        //console.log(age);
+        //console.log(country)
+        //console.log(Ismarried);
+      return <>
+         <form onSubmit={handlesubmit}>
+           <label >Name :  <input type="text" value={name} onChange={handlename}/> </label>
+           <label >Age :  <input type="number" value={age} onChange={handleage}/> </label>
+           <label >Country :
+              <select onChange={opt} value={country}>
+                <option value="" disabled>--select-country--</option>
+                <option value="usa">USA</option>
+                <option value="india">India</option>
+                <option value="china">China</option>
+              </select>
+            </label>
+            <label >Is User Married <input type="checkbox" checked={Ismarried} onChange={marid}/></label>
+            <input type="submit" name="Submit" />
+         </form>
+        </>;
+    }
+
+    // Render the App component into the root div
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+    reactRoot.render(<App />);
+  </script>
+</html>

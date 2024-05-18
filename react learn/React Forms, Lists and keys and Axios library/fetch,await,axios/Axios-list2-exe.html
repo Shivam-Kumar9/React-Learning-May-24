@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>axios</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+  <script type="text/babel">
+    function User(prop) {
+      //console.log(prop);
+      const { user } = prop;
+      //console.log(user);
+      const { name, username, id, email } = user;
+      return (
+        <div style={{ border: "1px solid", padding: "10px", margin: "10px" }}>
+          
+          <p>
+            <b>No.</b> : {id}
+          </p>
+          <h2>
+            <b>Name</b> : {name}
+          </h2>
+          <p>
+            <b>user name</b> : {username}
+          </p>
+          <p>
+            <b>Email</b> : {email}
+          </p>
+        </div>
+      );
+    }
+
+    function App() {
+      const [useRs, setUser] = React.useState([]);
+
+      async function handleFetch() {
+        try {
+          const final = await axios({
+            method:"get",
+            url :"https://jsonplaceholder.typicode.com/users",
+          });
+          
+          setUser(final.data);
+          console.log(final);
+          console.log(final.data);
+
+        } catch (error) {
+          alert("error");
+        }
+      }
+      //console.log(useRs.data);
+
+      return (
+        <div style={{ textAlign: "center" }}>
+          <button onClick={handleFetch}>axios Fetch Data</button>
+          {useRs.map((user) => (
+            <User user={user} />
+          ))}
+        </div>
+      );
+    }
+
+    // Render the App component into the root div
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+    reactRoot.render(<App />);
+  </script>
+</html>
