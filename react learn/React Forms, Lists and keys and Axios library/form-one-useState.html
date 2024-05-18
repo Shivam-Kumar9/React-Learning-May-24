@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dad-son</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+     `chat G P T - url ${"https://chatgpt.com/share/b8ac782c-337d-4274-90d7-8bae16cf39c7"}`  
+    function App(){
+        const [formState,setFormState]=React.useState({
+            name : "",
+            age  : '',
+            country :'',
+            Ismarried : false
+        })
+
+        {/*
+             function handleChange(e){
+             console.log("e.target.value",e.target.value);
+             //this will generaly catch all value but not able to manuver(update) these value in usestate
+             // need spececific  attribute  [ name ] or [ id ] in input tag to catch 
+            const {name, age, country, Ismarried}=e.target
+            setFormState( )
+            //we can do like this or else if we are comfertable with e.target  then |
+            }
+        */}
+        
+        
+        function handleChange(e){
+         setFormState({
+            ...formState,
+            [e.target.name]:e.target.type==="number"?
+                            Number(e.target.value)
+                           :e.target.type==="checkbox"?
+                            e.target.checked
+                           :e.target.value
+         })
+
+         //why [e.target,name] 
+         {/* Eg.
+            let somevar = "age"
+
+            let obj ={
+                [somevar]:23
+            } 
+            OUTPUT==> age:23
+        */}
+        }
+        
+        function handlesubmit(e){
+            e.preventDefault()
+            let Data ={
+                name,
+                age,
+                country,
+                Ismarried,
+            }
+            console.log(Data);
+        }
+
+      return <>
+         <form onSubmit={handlesubmit}>
+           <label >Name :  <input type="text" name="name" value={formState.name} onChange={handleChange}/> </label>
+           <label >Age :  <input type="number" name="age" value={formState.age} onChange={handleChange}/> </label>
+           <label >Country :
+              <select onChange={handleChange} name="country" value={formState.country}>
+                <option value="" disabled>--select-country--</option>
+                <option value="usa">USA</option>
+                <option value="india">India</option>
+                <option value="china">China</option>
+              </select>
+            </label>
+            <label >Is User Married <input name="Ismarried" type="checkbox" checked={formState.Ismarried} onChange={handleChange}/></label>
+            <input type="submit" name="Submit" />
+         </form>
+        </>;
+    }
+
+    // Render the App component into the root div
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+    reactRoot.render(<App />);
+  </script>
+</html>
