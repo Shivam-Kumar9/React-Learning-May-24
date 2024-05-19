@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  
+ 
+ function App() {
+    function Mount(){
+    const [flag,setFlag]=React.useState(true)
+    return(<div style={{border : '2px dashed red'}}>
+     
+     <h1>Component</h1>
+    <h2>{flag.toString()}</h2>
+    <br/>
+    <button onClick={()=>setFlag(!flag)}>2nd update phase</button>
+    </div>)
+   }
+    
+   const [comp,setComp]=React.useState(true)
+     
+    return(<>
+       
+      {comp?<Mount/>:`it is false now and this is 3rd part  delete Component from UI( in lifecycle)`}
+      <br/>
+      <button onClick={()=>setComp(!comp)}>3rd part life cycle</button>
+    </>)
+ }
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>
