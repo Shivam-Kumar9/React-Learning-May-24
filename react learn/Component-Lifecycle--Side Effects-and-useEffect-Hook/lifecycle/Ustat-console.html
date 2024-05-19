@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+ function App() {
+  let [count, setCount] = React.useState(0);
+
+  let handleIncrement = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+    console.log(count);
+  };
+ // setter fun  me jo count ki value ha wo har baar coount ki initial value he catch kar raha ha to jitni baat bhe liko return only one ans of first setter fun 
+ // print-->isme value is lia update nahi hui ha kyo ki  setter fun onclick fun ke complete exicute hone ke baad he update hoga  (asyc fun ha ) wo re rendering ke pahle jo state me ha tabhe comsole  0 ha  
+  return (
+    <div>
+      <h2>{count}</h2>
+      <button onClick={handleIncrement}>+</button>
+    </div>
+  );
+}
+// Initial Render 
+
+// btn click --> ... -->App Gets Re-renders
+ 
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+    
+ 
+</script>
+</html>
