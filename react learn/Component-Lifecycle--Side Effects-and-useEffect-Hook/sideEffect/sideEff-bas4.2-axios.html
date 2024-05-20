@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dad-son</title>
+    <title>axios side eff</title>
      <style>
         
      </style>
@@ -15,27 +15,68 @@
 <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="text/babel">
-       
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel"> 
+{/* 1. Build an application which will hit the server and give us a list of products as soon as the page loads (as soon as component mounts).
+    2. We have to display those products in the form of card in our UI
+*/}
+function ProductCard({product}){
+    return(
+        <div>
+                <img src={product.image} alt="product" width={200} />
+                <h3>{product.title}</h3>
+                <p>Price:-{product.price}</p>
+                <p>category:-{product.category}</p>
+                <p>Rating:-{product.rating.rate}</p>
+       </div>
+    )
+}
+
 function App() {
-  const [count,setCOunt]=React.useState(1)
-   
-   React.useEffect(function () {
-   
-    document.title=`Count: ${count}`;
-    console.log("callabck indside usefeffect called ")
-   },[count])
-   console.log("render...");
+  const [products,setProducts]=React.useState([])
+   React.useEffect(function () { 
+
+    async function fetchAndUpdateData(){
+        try{
+            let res = await axios({
+                method : "get",
+                url    : 'https://fakestoreapi.com/products'
+            })
+            setProducts(res.data);
+        }
+        catch(erroor){
+            console.log("error;-",erroor);
+        }
+    }
+    fetchAndUpdateData()
+   },[])
+   // if you want to use async funtion then u cant use like this 
+   {/*  useEffect( async function (){ cant use like this it will give error})
+   // you can write async by making one more in that anonymus fun 
+   // E.g =-- useEffect (()=>{
+    async function fetchAndUpdateData() { in this you can write all }
+   })
+
+     
+*/}
   return ( 
-    <div> 
-      <h1>{count}</h1>
-      <button onClick={function(){
-       setCOunt(count+1)
-      }}>+++</button>
+    <div>   
+      <h1>Products</h1>
+      <div>
+        {products.map((product) => (
+            <ProductCard product={product} key={product.id}/>
+            //if key was not defined  if there is any change in product react can still update but it take time check One by One  
+            // key is present then we are give name to them in react then react can easly catch changed product by id and update it 
+            //map ke andar ka single element product  ko obj me beja ha  card fun me 
+            
+        ))}
+      </div>
     </div>
   );  
 }
  
+
+
 /*
 life cycle
 

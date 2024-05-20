@@ -1,1 +1,74 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios side eff</title>
+  <style>
+    /* Your styles here */
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/babel">
+    function ProductCard({ product }) {
+      return (
+        <div>
+          <img src={product.image} alt="product" width={200} />
+          <h3>{product.title}</h3>
+          <p>Price:-{product.price}</p>
+          <p>category:-{product.category}</p>
+          <p>Rating:-{product.rating.rate}</p>
+        </div>
+      );
+    }
+
+    function App() {
+      const [products, setProducts] = React.useState([]);
+      const [isLoading, setIsLoading] = React.useState(false); // New state for loading indicator
+
+      React.useEffect(() => {
+        async function fetchAndUpdateData() {
+          setIsLoading(true); // Set loading state to true
+          try {
+            let res = await axios({
+              method: "get",
+              url: 'https://fakestoreapi.com/products'
+            });
+            setProducts(res.data);
+          } catch (error) {
+            console.error(error); // Log specific error message
+          } finally {
+            setIsLoading(false); // Set loading state to false after fetching (regardless of success or failure)
+          }
+        }
+
+        fetchAndUpdateData();
+      }, []);
+
+      return (
+        <div>
+          <h1>Products</h1>
+          {isLoading ? (
+            // Display loading indicator while data is being fetched
+            <p>Loading products...</p>
+          ) : (
+            <div>
+              {products.map((product) => (
+                <ProductCard product={product} key={product.id} />
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+    reactRoot.render(<App />);
+  </script>
+</html>
