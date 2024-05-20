@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-son</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+       
+function App() {
+  const [count,setCOunt]=React.useState(1)
+   
+   React.useEffect(function () {
+   
+    document.title=`Count: ${count}`;
+    console.log("callabck indside usefeffect called ")
+   },[count])
+   console.log("render...");
+  return ( 
+    <div> 
+      <h1>{count}</h1>
+      <button onClick={function(){
+       setCOunt(count+1)
+      }}>+++</button>
+    </div>
+  );  
+}
+ 
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+ // use Effect ( cbFun, dependency array)
+
+ // case 1 : no dependency array --> The callback inside useEffect will be called during mount phase only;
+     /*
+    useEffect (func(){
+      //this function will only be called during mount phase;
+    },[])
+    */
+    //that will will work only in intital rendering when (mount phase)
+ 
+    {/*---------------------------------------------------------------------------*/}
+ 
+ // case 2 :  dependency array  with value --> The callback inside useEffect will be called during mount phase only;
+     /*
+    useEffect (func(){
+      //this function will only be called during mount phase and the function will also be callled when the value in the dependency array changes ;
+    },[ Value ])
+    */
+   
+</script>
+</html>
