@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios side eff</title>
+     <style>
+       .pagination{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom:20px ;
+       } 
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel"> 
+ 
+function Card({email, first_name, last_name, avatar  }){
+
+    return(
+        <div>
+         <img src={avatar} alt=""/>
+         <h3>{first_name} {last_name}</h3>
+         <p>{email}</p>
+                
+       </div>
+    )
+}
+ function LoadingIndicator(){
+    return <div>Loading...</div>
+ }
+ function ErrorIndicator(){
+    return <div>something went wrong  </div>
+ }
+
+function App() {
+  const [loading,setLoad] = React.useState(true)
+  const [users,setUsers]=React.useState([] )
+  const [error,setError]=React.useState(false)
+  const [page,setpage]=React.useState(1)
+   React.useEffect(function () { 
+
+    async function fetchAndUpdateData(page){
+        try{
+            let res = await axios({
+                method : "get",
+                url    : `https://reqres.in/api/users?page=${page}`
+            })
+            setUsers(res.data.data);
+            setLoad(false)
+        }
+        catch(error){
+            setError(true)
+            setLoad(false)
+        }
+    }
+    fetchAndUpdateData(page)
+   },[page])
+   
+  return ( 
+    <div>   
+      <h1>User</h1>
+      {loading?<LoadingIndicator/>:""}
+      {error?<ErrorIndicator/>:''}
+
+      <div className="pagination">
+        <button onClick={function(){
+          setpage(page-1)
+        }}>Previous</button>
+           <div>{page}</div>
+        <button onClick={function(){
+          setpage(page+1)
+        }}>next</button>
+      </div>
+ 
+      <div>
+        {users?.map((user) => (
+            <Card {...user} key={user.id}/>
+          
+            // optional chaining - it acces object prop or call fun  it breaks in between then error will not shown insted || undefined or null ||will be shown   
+             // good thing using optional chaining
+        ))}
+      </div>
+    </div>
+  );  
+}
+ {/* 1. mount(birth)-phase done 
+     2. update-phase phase done 
+     3. unmount phase - left
+*/}
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+ 
+   
+</script>
+</html>
