@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios side eff</title>
+     <style>
+       .pagination{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom:20px ;
+       } 
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel"> 
+
+
+ 
+function App() {
+    const [count, setCount] = React.useState(3)
+    function Timer(){
+    
+    React.useEffect(()=>{
+        //callback  useEffect start here
+        const intervalID=setInterval(()=>{
+            
+            setCount((prevCount)=>{
+                if(prevCount<=0){
+                    clearInterval(intervalID)
+                     //**************count still dips in negative********
+                  // in 38 line we write ( return prevCount ) then it get negative
+                }
+                return prevCount - 1})
+        },1000)
+
+        function cleanUPFun(){
+            console.log("cleaup fun called")
+         clearInterval(intervalID);  
+        }
+        return cleanUPFun
+     // ends here 
+                       },[])// Empty dependency array ensures useEffect runs once on mount
+}
+
+
+  const [showTimer,setShowTimer]=React.useState(true);
+   
+  return ( 
+    <div>  
+      <div style={{border:"1px dashed red" , padding:"10px"}}>
+       <h1>count down timer</h1>
+        <h4>{count}</h4>
+        </div>
+       {showTimer?<Timer/>:null}
+       <button onClick={() => setShowTimer(!showTimer)}>TOogle time</button>
+    </div>
+  );  
+}
+ {/* 1. mount(birth)-phase done 
+     2. update-phase phase done 
+     3. unmount phase - continued
+*/}
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+ 
+//useEffect (callbackfun, [])
+   
+  /*
+  useEffect( () => {
+    function cleanUp(){
+         ---any func name foo ,bar no matter --
+    }
+
+ return cleanUp 
+  },[]) 
+  */ 
+ // react ko bass itna pata ha jo bhe useEffect me  jo fun return kar rahe ho wo cleanup fun hoga
+ // jab kqabhi bhe unmount hoga to  wo  react knows  un named ke andar wala function return karna ha 
+</script>
+</html>
+ 
