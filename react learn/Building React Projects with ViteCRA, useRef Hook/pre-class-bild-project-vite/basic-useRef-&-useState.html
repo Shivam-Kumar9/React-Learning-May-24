@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios side eff</title>
+     <style>
+       .pagination{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom:20px ;
+       } 
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel"> 
+ // what is use Ref 
+ //it is a react hook that allow you to referance a value that doesn't trigggers a re-render when changed. THink of it as a "box" whrere you can keep a value safe and sound , and you can peek into it 
+ //whenever you want without causing any commotion in your component.
+
+ // basic Syntax
+ // const myRef = useRef(intialValue)
+ 
+
+// useState remembers value though re-renders but
+// but it triggers re-renders
+
+const ButtonWithUseState = () => {
+  const [count, setCount] = React.useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
+  console.log("ButtonWithUseState rendering...");
+  return (
+    <div>
+      <h1>Count : {count}</h1>
+      <button onClick={handleClick}>BUTTON WITH USE STATE</button>
+    </div>
+  );
+};
+/**************/
+// useRef also remembers value through re-renders;
+// but does not trigger re-renders
+
+const ButtonWithUseRef = () => {
+  let ref = React.useRef(0);
+  console.log(ref);
+  ///const [flag, setFlag] = React.useState(false);
+
+  const handleClick = () => {
+    ref.current = ref.current + 1;
+    console.log(ref);
+  };
+
+  console.log("ButtonWithUseRef rendering...");
+  return (
+    <div>
+      <h1>Count : {ref.current}</h1>
+    <button onClick={handleClick}>BUTTON WITH USEREF</button>
+      <br />
+      <br />
+  {/* <button onClick={() => setFlag(!flag)}>{flag ? "TRUE" : "FALSE"}</button> */}
+
+    </div>
+  );
+};
+
+ function App(){
+    return(<>
+    <ButtonWithUseState/>
+    <br/>
+    <br/>
+    <hr/>
+   
+    <br/>
+
+    <ButtonWithUseRef/>
+    </>)
+ }
+
+
+
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+
+{/* when we console use ref (let ref = React.useRef(0); )
+    output will be  an object with current : 0  ===>{current:0}  & in useSTate  it gives array with current value
+    current arbitery term nahi ha WE cano't change it when we need changes we hav to use currrent only
+*/}
+    
+    // State is immutable  - [value,setvalue ] to change the value you have to use setValue function
+    // Ref  is mutable - like ref.current = (change the value )
+</script>
+</html>

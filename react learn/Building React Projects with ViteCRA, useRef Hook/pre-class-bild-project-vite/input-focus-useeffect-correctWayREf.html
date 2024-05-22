@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios side eff</title>
+     <style>
+       .pagination{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom:20px ;
+       } 
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel"> 
+ /// pov is to focus on input as soon as it mounted so we don't have to click in input to type 
+
+ function Appi(){
+   React.useEffect(()=>{
+    document.querySelector("#inp").focus()
+   },[])
+    return(<>
+    <input type="text" id="inp"/>
+    </>)
+ }
+{/*
+
+*/}
+//Question - why cant we simply use focus without use effect 
+// Ans. there is not a react way  of doing things There is a certain rules you can't break 
+
+     /**    this above is not a correct way of writing it  ***/
+
+//step 1 : import useRef   --if in react app
+ 
+function App(){
+    const inputRef = React.useRef(null)
+    //step 2 : initialize it ;
+
+    React.useEffect( () => {
+        // any code 
+        inputRef.current.focus() //react way of catching dom note
+    }, [])
+
+    return (<div>
+          <input ref={inputRef} type="text"  placeholder="add todo"  id="todo-input"/>
+            {/* step : 3*/}
+          </div>)
+}
+
+
+
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+
+</script>
+</html>
