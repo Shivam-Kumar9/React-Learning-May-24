@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { LoadingIndicator } from "./loading-indicator";
 import { ErrorIndicator } from './error-indicator';
+import { ProductItems } from "./productSingle";
 
 {/*function ProductItems(prop){
     const {item} = prop;
@@ -12,18 +13,21 @@ import { ErrorIndicator } from './error-indicator';
         </div>
 }*/}
 // this a old method and long like wraping product in object then  do it like upper 
-function ProductItems({image, title, price, description, category}){
+
+
+
+// function ProductItems({image, title, price, description, category}){
     
   
-    console.log(price)
-    return <div style={{padding:"10px", margin:"10px", border:"2px solid"}}>
-        <img src={image} alt="product" width={200} height={200}/>
-        <h3>{title}</h3>
-        <p><b>Price :- </b>{price}$</p>
-        <p><b>Category :-</b> {category}</p>
-        {/* <p>{description}</p> */}
-        </div>
-}
+    
+//     return <div style={{padding:"10px", margin:"10px", border:"2px solid"}}>
+//         <img src={image} alt="product" width={200} height={200}/>
+//         <h3>{title}</h3>
+//         <p><b>Price :- </b>{price}$</p>
+//         <p><b>Category :-</b> {category}</p>
+//         {/* <p>{description}</p> */}
+//         </div>
+// }
 function Products(){
      const [loading,setLoading] = useState(false)
      const [products,setProducts]= useState([]);
