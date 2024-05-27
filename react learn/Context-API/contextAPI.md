@@ -1,0 +1,2 @@
+# if there is  nest page or  nested components - the way prop will be shared is 
+ * prop drilling - forcefully giving prop to a component that is not needed but in that component last child needs it . 
