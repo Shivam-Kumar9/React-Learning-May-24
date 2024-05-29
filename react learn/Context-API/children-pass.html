@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        
+     </style>
+</head>
+<body>
+     <div id="root"></div>
+     
+</body>
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+ 
+ 
+//  function Wrapp({children}){
+//   return(<div>
+//              {children}
+//         </div>)
+// }
+
+// function Sample(){
+//   return(<div> Sample </div>)
+// }
+
+//  function App1(){
+//   return(<Wrapp>
+//            <Sample/>    
+//          </Wrapp>)
+// }
+
+{/*                        EXPERIMENT ---------------------
+    function Wrapp({cho}){
+  return(<div>
+             {cho}
+        </div>)
+}
+
+function Sample(){
+  return(<div> Sample </div>)
+}
+
+ function App(){
+  return(<Wrapp>
+           <Sample/>    
+         </Wrapp>)
+}
+
+    The issue with your code is that the Sample component is being passed as children to the Wrapp component, but you are attempting to access it using the cho prop. In React, children components are accessed using the children prop.
+*/}
+
+ 
+
+// function Wrapp({prop}){
+//     console.log(prop);
+//   return(<div>
+//              <prop/>
+//         </div>)
+// }
+
+// function Sample(){
+//   return(<div> Sample </div>)
+// }
+
+//  function App(){
+//   return( <Wrapp prop={Sample} />)
+// }
+
+//=-------   upper / Lower problem
+
+function Wrapp({Prop}){
+    console.log(Prop);
+  return(<div>
+             <Prop/>
+        </div>)
+}
+
+function Sample(){
+  return(<div> Sample </div>)
+}
+
+ function App(){
+  return( <Wrapp Prop={Sample} />)
+}
+
+
+
+
+// Render the App component into the root div
+const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+reactRoot.render(<App/>);
+
+ // concept -:  https://chatgpt.com/share/9100dc6b-88f7-4228-8143-a6c0ee4a8e37
+ 
+ {/*
+   Using Lowercase vs. Uppercase for Prop Names
+Lowercase Prop Name:
+
+When using a lowercase prop name like prop, React will not recognize it as a component if used directly in JSX.
+In JSX, a tag that starts with a lowercase letter is treated as a built-in component (like a div or span), not as a custom component.
+Uppercase Prop Name:
+
+To ensure React treats the prop as a component, use an uppercase prop name (like Component).
+This follows the React convention that components should start with an uppercase letter, distinguishing them from standard HTML tags.
+ */}
+</script>
+</html>
