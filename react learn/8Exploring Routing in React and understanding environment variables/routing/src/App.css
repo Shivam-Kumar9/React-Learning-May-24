@@ -1,0 +1,17 @@
+ body{
+  margin: 0;
+  box-sizing: border-box;
+ }
+
+ #navbar{
+  background-color: antiquewhite;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+ }
+
+ .navbar > a{
+  color: brown;
+  text-decoration: none;
+ }
