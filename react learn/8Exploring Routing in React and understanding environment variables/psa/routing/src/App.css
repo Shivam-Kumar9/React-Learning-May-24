@@ -1,0 +1,28 @@
+ body{
+  margin: 0;
+  box-sizing: border-box;
+ }
+
+ #navbar{
+  background-color: antiquewhite;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+ }
+
+ .navbar > a{
+  color: brown;
+  text-decoration: none;
+ }
+
+ #user_div{
+   border: 2px solid;
+   border-radius: 10px;
+   margin: 10px;
+   padding: 10px;
+   text-align: center;
+ }
+ #user_div>img{
+    border-radius: 10px;
+ }
