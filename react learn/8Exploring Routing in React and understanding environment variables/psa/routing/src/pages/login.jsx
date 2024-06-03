@@ -10,7 +10,7 @@ export default function Login(){
         email : '',
         password : ''
       })
-
+ 
     function handlechange(e){
         const { name , value} = e.target
         var inputs = { ...userInput ,
@@ -32,9 +32,7 @@ export default function Login(){
             console.log(err);
         })
        ;
-    }    
-    
-    
+    }     
 
      const {email , password } = userInput
     return(<>
@@ -46,7 +44,7 @@ export default function Login(){
       <br />
       <label> Email :  
       <input type="text" name='email' value={email}  onChange={handlechange}  placeholder='enter email' />
-      <br />
+      <br /> 
       <br />
       <label>Password : 
         <input type="text" name='password' value={password} onChange={handlechange} placeholder='enter password' />
