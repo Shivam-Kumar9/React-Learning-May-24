@@ -5,7 +5,7 @@ export default function Home(){
         <>
         <Box>
             <Heading as='h1' size='xl'>Home page</Heading>
-        </Box>
+         </Box>
        
         </>
     )
