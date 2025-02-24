@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom' 
+import { Routes, Route } from 'react-router-dom' 
 
 import About from '../Pages/About'
 import Contact from '../Pages/Contact'
@@ -6,19 +6,10 @@ import Home from '../Pages/Home'
 import Login from '../Pages/Login'
 import Tasks from '../Pages/Tasks'
 
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthContextProvider'
+import PageLock from './PrivateRoute'
 
 
-function PageLock({children}){
-   const {authDetails}= useContext(AuthContext)   
-   var {isLoggedIn} = authDetails 
 
-   if(!isLoggedIn){
-    return (<Navigate to='/login'/>)
-   }
-    return children;
-}
 
 export default function AllRoutes(){
     return(
