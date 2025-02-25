@@ -1,4 +1,11 @@
-Great question! Let’s break it down:
+ 
+```jsx
+      return(<>
+      <AuthTheme.Provider theme={realTheme}>
+        {child}
+      </AuthTheme.Provider>
+    </>)
+```
 
 ### Why `value` and not `theme`?
 In React's Context API, the `Provider` component has a specific prop called **`value`**. This is a **required prop** that is used to pass the context data down to all the consuming components (those using `useContext` or `Consumer`).
