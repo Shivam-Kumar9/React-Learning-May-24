@@ -19,3 +19,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 //in prop ----> string number boolean object array function ,null undefined
+
+
+
