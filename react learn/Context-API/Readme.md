@@ -275,3 +275,82 @@ Here, `header` and `footer` are custom props, and they serve a specific purpose.
 - **Destructuring `children` is a best practice**: It makes your code cleaner and more explicit.
 
 If you still have questions or need further clarification, feel free to ask! 😊
+
+ <!-- doose and don'ts -->
+ #                                     do's  & don't
+
+Let’s break down the issues in your code step by step. I’ll point out the problems first, and if you have further questions, feel free to ask!
+
+---
+
+### 1. **Incorrect Import Statement**
+```javascript
+import const AuthTheme = createContext();
+```
+- **Issue**: You cannot use `const` in an import statement. This is invalid syntax.
+- **Why it’s wrong**: The `import` statement is used to bring in modules or named exports, but you cannot declare variables (`const`, `let`, `var`) directly in an import statement.
+
+---
+
+### 2. **Incorrect Prop Name**
+```javascript
+export default function CompTheme({ Children }) {
+```
+- **Issue**: The prop is named `Children` (with an uppercase `C`), but React expects `children` (with a lowercase `c`).
+- **Why it’s wrong**: React treats `children` as a special prop that represents the content between the opening and closing tags of a component. Using `Children` (uppercase) will not work as expected because React will not recognize it as the special `children` prop.
+
+---
+
+### 3. **Incorrect Usage of `value` in `Provider`**
+```javascript
+<AuthTheme.Provider value={realTheme, setTheme}>
+```
+- **Issue**: The `value` prop is being passed an invalid expression (`realTheme, setTheme`).
+- **Why it’s wrong**: The `value` prop expects a single value (e.g., an object, string, number, or array). The comma operator here is invalid in this context. If you want to pass multiple values, you need to wrap them in an object.
+
+---
+
+### 4. **Unnecessary Import of `Children`**
+```javascript
+import { Children, createContext, useState } from "react";
+```
+- **Issue**: You’re importing `Children` from React, but it’s not being used in the code.
+- **Why it’s wrong**: The `Children` utility is used for manipulating the `children` prop (e.g., mapping over children), but it’s not needed here. You can remove this import to keep the code clean.
+
+---
+
+### 5. **Missing Export of `AuthTheme`**
+```javascript
+const AuthTheme = createContext();
+```
+- **Issue**: `AuthTheme` is not exported, so it cannot be used outside this file.
+- **Why it’s wrong**: If you want to use `AuthTheme` in other files (e.g., to consume the context with `useContext`), you need to export it.
+
+---
+
+### Corrected Code (Conceptual Explanation)
+Here’s how you can fix the issues conceptually (without providing the full code yet):
+
+1. **Fix the Import Statement**:
+   - Remove the invalid `import const` line.
+   - Declare `AuthTheme` after importing `createContext`.
+
+2. **Use the Correct Prop Name**:
+   - Change `{ Children }` to `{ children }` (lowercase `c`).
+
+3. **Fix the `value` Prop**:
+   - Pass a valid value to the `Provider`. If you want to pass both `realTheme` and `setTheme`, wrap them in an object:
+     ```javascript
+     value={{ realTheme, setTheme }}
+     ```
+
+4. **Remove Unnecessary Imports**:
+   - Remove `Children` from the import statement since it’s not being used.
+
+5. **Export `AuthTheme`**:
+   - Export `AuthTheme` if you plan to use it in other files.
+
+---
+
+### Next Steps
+If you’d like me to explain any of these fixes in more detail or provide the corrected code, let me know! 😊
